@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050806">
+
+<title>MRACLE DEV | Web Developer & Tech Builder</title>
+
+<style>
+:root{
+    --bg:#030504;
+    --bg2:#07100a;
+    --card:rgba(11,22,15,.72);
+    --line:rgba(86,255,139,.16);
+    --green:#39ff78;
+    --green2:#8affad;
+    --white:#f4f8f5;
+    --muted:#8d9b92;
+    --danger:#ff4d67;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 80% 10%,rgba(57,255,120,.09),transparent 25%),
+        radial-gradient(circle at 10% 50%,rgba(57,255,120,.05),transparent 25%),
+        var(--bg);
+    color:var(--white);
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.025;
+    background-image:
+        linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+    background-size:45px 45px;
+    z-index:-1;
+}
+
+/* LOADER */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#020403;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    transition:.8s;
+}
+
+.loader-box{
+    text-align:center;
+}
+
+.loader-logo{
+    font-size:32px;
+    font-weight:900;
+    color:var(--green);
+    letter-spacing:4px;
+    text-shadow:0 0 25px rgba(57,255,120,.7);
+}
+
+.loader-line{
+    width:180px;
+    height:2px;
+    background:#102016;
+    margin:20px auto;
+    overflow:hidden;
+}
+
+.loader-line span{
+    display:block;
+    width:50%;
+    height:100%;
+    background:var(--green);
+    box-shadow:0 0 15px var(--green);
+    animation:load 1.2s infinite;
+}
+
+@keyframes load{
+    from{transform:translateX(-100%)}
+    to{transform:translateX(300%)}
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:92%;
+    max-width:1200px;
+    padding:13px 18px;
+    border:1px solid var(--line);
+    background:rgba(3,8,5,.72);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-radius:22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+}
+
+.logo{
+    color:var(--green);
+    font-weight:900;
+    letter-spacing:2px;
+    font-size:18px;
+}
+
+.logo span{
+    color:#fff;
+}
+
+.nav-links{
+    display:flex;
+    gap:8px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#aebbb2;
+    text-decoration:none;
+    padding:9px 13px;
+    border-radius:12px;
+    font-size:13px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--green);
+    background:rgba(57,255,120,.07);
+}
+
+.menu{
+    display:none;
+    font-size:25px;
+    color:var(--green);
+    cursor:pointer;
+}
+
+/* GENERAL */
+
+section{
+    width:92%;
+    max-width:1150px;
+    margin:auto;
+    padding:110px 0;
+}
+
+.section-tag{
+    color:var(--green);
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.section-title{
+    font-size:42px;
+    line-height:1.1;
+    margin-bottom:15px;
+}
+
+.section-title span{
+    color:var(--green);
+}
+
+.section-desc{
+    max-width:650px;
+    color:var(--muted);
+    line-height:1.8;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    padding-top:150px;
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    align-items:center;
+    gap:60px;
+}
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    border:1px solid var(--line);
+    background:rgba(57,255,120,.05);
+    color:var(--green2);
+    padding:9px 13px;
+    border-radius:30px;
+    font-size:12px;
+    margin-bottom:22px;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
+}
+
+.hero h1{
+    font-size:clamp(48px,7vw,88px);
+    line-height:.94;
+    letter-spacing:-4px;
+    margin-bottom:24px;
+}
+
+.hero h1 span{
+    color:var(--green);
+    text-shadow:0 0 35px rgba(57,255,120,.18);
+}
+
+.hero-name{
+    color:#b9c5bd;
+    font-size:18px;
+    margin-bottom:18px;
+}
+
+.hero-name strong{
+    color:#fff;
+}
+
+.hero-text{
+    max-width:620px;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:15px;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:30px;
+}
+
+.btn{
+    border:none;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:13px 19px;
+    border-radius:13px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-primary{
+    color:#021006;
+    background:var(--green);
+    box-shadow:0 0 25px rgba(57,255,120,.15);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 35px rgba(57,255,120,.3);
+}
+
+.btn-outline{
+    color:#dce8df;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.02);
+}
+
+.btn-outline:hover{
+    border-color:rgba(57,255,120,.45);
+    color:var(--green);
+}
+
+/* PROFILE */
+
+.profile-wrap{
+    position:relative;
+    display:flex;
+    justify-content:center;
+}
+
+.profile-glow{
+    position:absolute;
+    width:280px;
+    height:280px;
+    background:rgba(57,255,120,.12);
+    filter:blur(70px);
+    border-radius:50%;
+}
+
+.profile-card{
+    position:relative;
+    width:330px;
+    height:430px;
+    padding:10px;
+    border-radius:30px;
+    background:linear-gradient(145deg,rgba(57,255,120,.3),rgba(255,255,255,.03),rgba(57,255,120,.08));
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+    transform:rotate(2deg);
+}
+
+.profile-inner{
+    width:100%;
+    height:100%;
+    border-radius:23px;
+    overflow:hidden;
+    background:#070b08;
+    position:relative;
+}
+
+.profile-inner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(100%) contrast(1.08);
+}
+
+.profile-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(to top,rgba(0,0,0,.85),transparent 50%),
+        linear-gradient(120deg,rgba(57,255,120,.08),transparent);
+}
+
+.profile-label{
+    position:absolute;
+    bottom:22px;
+    left:22px;
+}
+
+.profile-label small{
+    color:var(--green);
+    letter-spacing:3px;
+    font-size:10px;
+}
+
+.profile-label h3{
+    margin-top:6px;
+    font-size:24px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:55px;
+}
+
+.stat{
+    padding:22px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.018);
+    border-radius:18px;
+}
+
+.stat h3{
+    color:var(--green);
+    font-size:25px;
+}
+
+.stat p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:45px;
+}
+
+.card{
+    padding:25px;
+    border:1px solid var(--line);
+    background:linear-gradient(145deg,rgba(12,25,17,.8),rgba(4,8,6,.75));
+    border-radius:22px;
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(57,255,120,.35);
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.icon{
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:13px;
+    background:rgba(57,255,120,.08);
+    color:var(--green);
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* ABOUT */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.terminal{
+    border:1px solid var(--line);
+    border-radius:20px;
+    overflow:hidden;
+    background:#050906;
+    box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+.terminal-head{
+    padding:13px 16px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.circle{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#334238;
+}
+
+.terminal-title{
+    color:#6f7d73;
+    font-size:10px;
+    margin-left:8px;
+}
+
+.terminal-body{
+    padding:25px;
+    font-family:monospace;
+    font-size:12px;
+    line-height:2;
+    color:#aebcb2;
+}
+
+.green{
+    color:var(--green);
+}
+
+.white{
+    color:#fff;
+}
+
+/* SKILLS */
+
+.skill{
+    margin-bottom:20px;
+}
+
+.skill-top{
+    display:flex;
+    justify-content:space-between;
+    color:#d7e0da;
+    font-size:12px;
+    margin-bottom:8px;
+}
+
+.skill-bar{
+    height:5px;
+    background:#101812;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.skill-fill{
+    height:100%;
+    background:var(--green);
+    box-shadow:0 0 12px rgba(57,255,120,.35);
+}
+
+/* PROJECTS */
+
+.project{
+    min-height:210px;
+    position:relative;
+    overflow:hidden;
+}
+
+.project-number{
+    color:rgba(57,255,120,.25);
+    font-size:55px;
+    font-weight:900;
+    position:absolute;
+    right:18px;
+    top:10px;
+}
+
+.project h3{
+    position:relative;
+    margin-top:30px;
+}
+
+.project p{
+    position:relative;
+}
+
+/* JOURNEY */
+
+.timeline{
+    margin-top:45px;
+    border-left:1px solid rgba(57,255,120,.2);
+    margin-left:10px;
+}
+
+.timeline-item{
+    position:relative;
+    padding:0 0 35px 30px;
+}
+
+.timeline-item:before{
+    content:"";
+    position:absolute;
+    left:-5px;
+    top:4px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 14px rgba(57,255,120,.6);
+}
+
+.timeline-item small{
+    color:var(--green);
+    letter-spacing:2px;
+}
+
+.timeline-item h3{
+    margin:8px 0;
+}
+
+.timeline-item p{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:13px;
+}
+
+/* SUPPORT */
+
+.support{
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(57,255,120,.2);
+    background:
+        radial-gradient(circle at 90% 20%,rgba(57,255,120,.12),transparent 30%),
+        rgba(7,17,10,.8);
+    border-radius:28px;
+    padding:45px;
+}
+
+.support-content{
+    max-width:700px;
+}
+
+.support h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.support h2 span{
+    color:var(--green);
+}
+
+.support p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.bank-box{
+    margin-top:25px;
+    padding:20px;
+    border:1px solid var(--line);
+    background:rgba(0,0,0,.25);
+    border-radius:18px;
+    max-width:520px;
+}
+
+.bank-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:9px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    font-size:13px;
+}
+
+.bank-row:last-child{
+    border-bottom:none;
+}
+
+.bank-label{
+    color:#77847b;
+}
+
+.bank-value{
+    color:#fff;
+    text-align:right;
+    font-weight:600;
+}
+
+.copy-account{
+    margin-top:15px;
+}
+
+/* CONTACT */
+
+.contact-box{
+    margin-top:45px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.contact-card{
+    padding:25px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:rgba(255,255,255,.015);
+}
+
+.contact-card small{
+    color:#65736a;
+    display:block;
+    margin-bottom:8px;
+}
+
+.contact-card a{
+    color:#fff;
+    text-decoration:none;
+    word-break:break-word;
+}
+
+.contact-card a:hover{
+    color:var(--green);
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:35px 5%;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:#647169;
+    font-size:11px;
+}
+
+footer strong{
+    color:var(--green);
+}
+
+/* FLOAT WHATSAPP */
+
+.whatsapp{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#1bd760;
+    color:white;
+    text-decoration:none;
+    font-size:24px;
+    box-shadow:0 10px 35px rgba(27,215,96,.3);
+    z-index:900;
+    transition:.3s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.08);
+}
+
+/* REVEAL */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    nav{
+        width:94%;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:65px;
+        left:0;
+        right:0;
+        padding:10px;
+        display:none;
+        flex-direction:column;
+        background:rgba(4,9,6,.96);
+        border:1px solid var(--line);
+        border-radius:18px;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .nav-links a{
+        padding:13px;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        text-align:center;
+        padding-top:130px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-text{
+        margin:auto;
+    }
+
+    .profile-wrap{
+        order:-1;
+    }
+
+    .profile-card{
+        width:260px;
+        height:340px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .contact-box{
+        grid-template-columns:1fr;
+    }
+
+    .section-title{
+        font-size:34px;
+    }
+
+    .support{
+        padding:28px 20px;
+    }
+
+    .support h2{
+        font-size:32px;
+    }
+
+    .bank-row{
+        flex-direction:column;
+        gap:3px;
+    }
+
+    .bank-value{
+        text-align:left;
+    }
+
+    footer{
+        flex-direction:column;
+    }
+}
+
+@media(max-width:450px){
+
+    .hero h1{
+        font-size:48px;
+        letter-spacing:-3px;
+    }
+
+    .stats{
+        gap:8px;
+    }
+
+    .stat{
+        padding:17px;
+    }
+
+    section{
+        padding:80px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+    <div class="loader-box">
+        <div class="loader-logo">MRACLE DEV</div>
+        <div class="loader-line">
+            <span></span>
+        </div>
+        <small style="color:#66736b;">INITIALIZING...</small>
+    </div>
+</div>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        MRACLE<span>.DEV</span>
+    </div>
+
+    <div class="menu" id="menu">
+        ☰
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content reveal">
+
+        <div class="status">
+            <span class="status-dot"></span>
+            AVAILABLE TO BUILD
+        </div>
+
+        <h1>
+            I Build.<br>
+            I Code.<br>
+            <span>I Create.</span>
+        </h1>
+
+        <div class="hero-name">
+            <strong>𝕾⃟MR ༎ٜٜٜٜࠫM𖮆RACLE༎𝅥ٜٜٜٜࠫ𝆬ː͢ DEV 𖤍</strong>
+        </div>
+
+        <p class="hero-text">
+            Web Developer • Security Enthusiast • Tech Builder.
+            I create modern websites, experiment with technology,
+            learn cybersecurity, and turn ideas into digital experiences.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#projects" class="btn btn-primary">
+                Explore My Work
+            </a>
+
+            <a href="https://wa.me/2349039872548"
+               class="btn btn-outline"
+               target="_blank">
+                WhatsApp Me
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="profile-wrap reveal">
+
+        <div class="profile-glow"></div>
+
+        <div class="profile-card">
+
+            <div class="profile-inner">
+
+                <!-- PUT YOUR IMAGE HERE -->
+                <img src="https://i.postimg.cc/TPr1F6Gh/Screenshot-20260915-125019.png" alt="MRACLE DEV profile">
+
+                <div class="profile-overlay"></div>
+
+                <div class="profile-label">
+
+                    <small>DEVELOPER PROFILE</small>
+
+                    <h3>MRACLE DEV</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section style="padding-top:0;">
+
+    <div class="stats reveal">
+
+        <div class="stat">
+            <h3>01+</h3>
+            <p>Developer Journey</p>
+        </div>
+
+        <div class="stat">
+            <h3>06+</h3>
+            <p>Tech Skills</p>
+        </div>
+
+        <div class="stat">
+            <h3>04+</h3>
+            <p>Projects Built</p>
+        </div>
+
+        <div class="stat">
+            <h3>∞</h3>
+            <p>Things To Learn</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="about-grid">
+
+        <div class="reveal">
+
+            <div class="section-tag">01 / ABOUT ME</div>
+
+            <h2 class="section-title">
+                Building my way into <span>tech.</span>
+            </h2>
+
+            <p class="section-desc">
+
+                I'm a young developer focused on learning how technology
+                works and turning what I learn into real projects.
+
+                <br><br>
+
+                My interests include web development, UI design,
+                automation, artificial intelligence, cybersecurity
+                learning and software development.
+
+                <br><br>
+
+                I believe the best way to learn is to build.
+
+            </p>
+
+        </div>
+
+
+        <div class="terminal reveal">
+
+            <div class="terminal-head">
+
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+
+                <span class="terminal-title">
+                    profile.json
+                </span>
+
+            </div>
+
+            <div class="terminal-body">
+
+                <span class="green">{</span><br>
+
+                &nbsp;&nbsp;<span class="green">"name"</span>:
+                <span class="white">"MRACLE DEV"</span>,<br>
+
+                &nbsp;&nbsp;<span class="green">"role"</span>:
+                <span class="white">"Web Developer"</span>,<br>
+
+                &nbsp;&nbsp;<span class="green">"focus"</span>:
+                <span class="white">"Technology"</span>,<br>
+
+                &nbsp;&nbsp;<span class="green">"learning"</span>:
+                <span class="white">"Cybersecurity"</span>,<br>
+
+                &nbsp;&nbsp;<span class="green">"passion"</span>:
+                <span class="white">"Building"</span>,<br>
+
+                &nbsp;&nbsp;<span class="green">"mindset"</span>:
+                <span class="white">"Keep Learning"</span>,<br>
+
+                &nbsp;&nbsp;<span class="green">"status"</span>:
+                <span class="green">"ONLINE"</span><br>
+
+                <span class="green">}</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <div class="reveal">
+
+        <div class="section-tag">02 / SKILLS</div>
+
+        <h2 class="section-title">
+            Tools I use to <span>build.</span>
+        </h2>
+
+        <p class="section-desc">
+            My current technical interests and skills.
+            The percentages represent my current learning confidence,
+            not professional certifications.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card reveal">
+
+            <div class="icon">&lt;/&gt;</div>
+
+            <h3>HTML</h3>
+
+            <p>
+                Building structured and semantic web pages.
+            </p>
+
+            <div class="skill" style="margin-top:20px;">
+                <div class="skill-top">
+                    <span>Learning</span>
+                    <span>90%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:90%;"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">✦</div>
+
+            <h3>CSS</h3>
+
+            <p>
+                Creating responsive interfaces, animations
+                and modern visual designs.
+            </p>
+
+            <div class="skill" style="margin-top:20px;">
+                <div class="skill-top">
+                    <span>Learning</span>
+                    <span>85%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:85%;"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">JS</div>
+
+            <h3>JavaScript</h3>
+
+            <p>
+                Learning interaction, logic, APIs and dynamic
+                web experiences.
+            </p>
+
+            <div class="skill" style="margin-top:20px;">
+                <div class="skill-top">
+                    <span>Learning</span>
+                    <span>65%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:65%;"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">UI</div>
+
+            <h3>UI / UX</h3>
+
+            <p>
+                Designing clean interfaces with focus on
+                usability and visual hierarchy.
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">GH</div>
+
+            <h3>Git & GitHub</h3>
+
+            <p>
+                Learning version control and managing
+                development projects.
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">AI</div>
+
+            <h3>AI + Tech</h3>
+
+            <p>
+                Exploring how artificial intelligence can
+                improve software and digital workflows.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <div class="reveal">
+
+        <div class="section-tag">03 / PROJECTS</div>
+
+        <h2 class="section-title">
+            Things I've <span>built.</span>
+        </h2>
+
+        <p class="section-desc">
+            Projects are where learning becomes real.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card project reveal">
+
+            <div class="project-number">01</div>
+
+            <h3>Zoro Fan Experience</h3>
+
+            <p>
+                A dark cinematic fan website created to
+                experiment with navigation, animations,
+                visual effects and responsive design.
+            </p>
+
+            <div style="margin-top:20px;color:#39ff78;font-size:11px;">
+                HTML • CSS • JavaScript
+            </div>
+
+        </div>
+
+
+        <div class="card project reveal">
+
+            <div class="project-number">02</div>
+
+            <h3>Pharmacy Website</h3>
+
+            <p>
+                A professional business website concept
+                for a pharmaceutical and medical-equipment
+                business.
+            </p>
+
+            <div style="margin-top:20px;color:#39ff78;font-size:11px;">
+                HTML • CSS • Responsive Design
+            </div>
+
+        </div>
+
+
+        <div class="card project reveal">
+
+            <div class="project-number">03</div>
+
+            <h3>Tech Academy</h3>
+
+            <p>
+                A modern educational website concept for
+                teaching beginners and advanced learners
+                different technology skills.
+            </p>
+
+            <div style="margin-top:20px;color:#39ff78;font-size:11px;">
+                HTML • CSS • UI Design
+            </div>
+
+        </div>
+
+
+        <div class="card project reveal">
+
+            <div class="project-number">04</div>
+
+            <h3>More Coming</h3>
+
+            <p>
+                This portfolio is only the beginning.
+                More applications, experiments and
+                development projects are coming.
+            </p>
+
+            <div style="margin-top:20px;color:#39ff78;font-size:11px;">
+                BUILD • LEARN • REPEAT
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- JOURNEY -->
+
+<section>
+
+    <div class="reveal">
+
+        <div class="section-tag">04 / JOURNEY</div>
+
+        <h2 class="section-title">
+            The path is <span>still loading.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="timeline">
+
+        <div class="timeline-item reveal">
+
+            <small>STAGE 01</small>
+
+            <h3>Start</h3>
+
+            <p>
+                Discovering how websites, applications and
+                technology work.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <small>STAGE 02</small>
+
+            <h3>Build</h3>
+
+            <p>
+                Turning ideas into real websites and
+                small digital projects.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <small>STAGE 03</small>
+
+            <h3>Improve</h3>
+
+            <p>
+                Learning JavaScript, Git, APIs and
+                stronger development practices.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <small>STAGE 04</small>
+
+            <h3>Explore Security</h3>
+
+            <p>
+                Learning cybersecurity concepts and
+                responsible security practices.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <small>STAGE 05</small>
+
+            <h3>Create</h3>
+
+            <p>
+                Building useful software and turning
+                development skills into real opportunities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHAT I DO -->
+
+<section>
+
+    <div class="reveal">
+
+        <div class="section-tag">05 / WHAT I DO</div>
+
+        <h2 class="section-title">
+            From idea to <span>interface.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card reveal">
+
+            <div class="icon">⌘</div>
+
+            <h3>Web Development</h3>
+
+            <p>
+                Responsive websites designed for phones,
+                tablets and desktop screens.
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">◇</div>
+
+            <h3>UI Design</h3>
+
+            <p>
+                Dark, modern and interactive interfaces
+                with attention to detail.
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">⚙</div>
+
+            <h3>Automation</h3>
+
+            <p>
+                Exploring ways technology and AI can
+                simplify repetitive digital tasks.
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">⌁</div>
+
+            <h3>Security Learning</h3>
+
+            <p>
+                Studying cybersecurity and responsible
+                security concepts through legal practice.
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">AI</div>
+
+            <h3>AI Exploration</h3>
+
+            <p>
+                Experimenting with artificial intelligence
+                as a development tool.
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="icon">+</div>
+
+            <h3>Always Learning</h3>
+
+            <p>
+                Technology changes constantly, so the
+                learning never really ends.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SUPPORT -->
+
+<section id="support">
+
+    <div class="support reveal">
+
+        <div class="support-content">
+
+            <div class="section-tag">
+                SUPPORT THE JOURNEY
+            </div>
+
+            <h2>
+                Want to support <span>my work?</span>
+            </h2>
+
+            <p>
+                If my projects, learning journey or content
+                have been useful to you and you would like
+                to support what I'm building, you can use
+                the account details below.
+            </p>
+
+
+            <div class="bank-box">
+
+                <div class="bank-row">
+
+                    <span class="bank-label">
+                        👤 NAME
+                    </span>
+
+                    <span class="bank-value">
+                        SUNUSI ALIYU
+                    </span>
+
+                </div>
+
+
+                <div class="bank-row">
+
+                    <span class="bank-label">
+                        🏦 BANK
+                    </span>
+
+                    <span class="bank-value">
+                        OPAY
+                    </span>
+
+                </div>
+
+
+                <div class="bank-row">
+
+                    <span class="bank-label">
+                        🔢 ACCOUNT
+                    </span>
+
+                    <span class="bank-value"
+                          id="accountNumber">
+                        8103580813
+                    </span>
+
+                </div>
+
+
+                <button class="btn btn-primary copy-account"
+                        onclick="copyAccount()">
+
+                    Copy Account Number
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="reveal">
+
+        <div class="section-tag">06 / CONTACT</div>
+
+        <h2 class="section-title">
+            Let's build something <span>interesting.</span>
+        </h2>
+
+        <p class="section-desc">
+            For website projects, collaborations, questions
+            or technology conversations, you can reach me here.
+        </p>
+
+    </div>
+
+
+    <div class="contact-box">
+
+        <div class="contact-card reveal">
+
+            <small>WHATSAPP</small>
+
+            <a href="https://wa.me/2349039872548"
+               target="_blank">
+
+                +234 903 987 2548
+
+            </a>
+
+        </div>
+
+
+        <div class="contact-card reveal">
+
+            <small>EMAIL</small>
+
+            <a href="mailto:mrpsychology.media@gmail.com">
+
+                mrpsychology.media@gmail.com
+
+            </a>
+
+        </div>
+
+
+        <div class="contact-card reveal">
+
+            <small>ROLE</small>
+
+            <a href="#home">
+
+                Web Developer • Tech Builder
+
+            </a>
+
+        </div>
+
+
+        <div class="contact-card reveal">
+
+            <small>STATUS</small>
+
+            <a href="#projects">
+
+                Learning • Building • Improving
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div style="margin-top:25px;display:flex;gap:12px;flex-wrap:wrap;">
+
+        <a class="btn btn-primary"
+           href="https://wa.me/2349039872548?text=Hello%20MRACLE%20DEV%2C%20I%20found%20your%20portfolio.">
+
+            Message Me on WhatsApp
+
+        </a>
+
+        <button class="btn btn-outline"
+                onclick="copyEmail()">
+
+            Copy Email
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+        © 2026 <strong>MRACLE DEV</strong>
+    </div>
+
+    <div>
+        BUILD • CODE • CREATE
+    </div>
+
+</footer>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a class="whatsapp"
+   href="https://wa.me/2349039872548"
+   target="_blank"
+   aria-label="WhatsApp">
+
+    ☎
+
+</a>
+
+
+<script>
+
+/* LOADER */
+
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        document.getElementById("loader").style.opacity="0";
+
+        setTimeout(function(){
+
+            document.getElementById("loader").style.display="none";
+
+        },800);
+
+    },900);
+
+});
+
+
+/* MOBILE MENU */
+
+const menu = document.getElementById("menu");
+const navLinks = document.getElementById("navLinks");
+
+menu.addEventListener("click",function(){
+
+    navLinks.classList.toggle("active");
+
+});
+
+
+document.querySelectorAll(".nav-links a").forEach(function(link){
+
+    link.addEventListener("click",function(){
+
+        navLinks.classList.remove("active");
+
+    });
+
+});
+
+
+/* SCROLL REVEAL */
+
+const observer = new IntersectionObserver(
+
+    function(entries){
+
+        entries.forEach(function(entry){
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.12
+    }
+
+);
+
+
+document.querySelectorAll(".reveal").forEach(function(element){
+
+    observer.observe(element);
+
+});
+
+
+/* COPY ACCOUNT */
+
+function copyAccount(){
+
+    navigator.clipboard.writeText("8103580813");
+
+    alert("OPay account number copied.");
+
+}
+
+
+/* COPY EMAIL */
+
+function copyEmail(){
+
+    navigator.clipboard.writeText("mrpsychology.media@gmail.com");
+
+    alert("Email copied.");
+
+}
+
+</script>
+
+</body>
+</html>
